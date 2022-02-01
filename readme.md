@@ -4,7 +4,7 @@
 [![npm downloads a month](https://img.shields.io/npm/dm/esbuild-plugin-eslint)](https://www.npmjs.com/package/esbuild-plugin-eslint)
 [![required node version](https://img.shields.io/node/v/esbuild-plugin-eslint)](https://github.com/nodejs/Release)
 [![esbuild peer dep](https://img.shields.io/npm/dependency-version/esbuild-plugin-eslint/peer/esbuild?label=esbuild%20peer%20dep)](https://github.com/rollup/rollup)
-[![eslint peer dep](https://img.shields.io/npm/dependency-version/esbuild-plugin-eslint/eslint?label=eslint%20peer%20dep)](https://github.com/eslint/eslint)
+[![eslint peer dep](https://img.shields.io/npm/dependency-version/esbuild-plugin-eslint/peer/eslint?label=eslint%20peer%20dep)](https://github.com/eslint/eslint)
 [![package license](https://img.shields.io/npm/l/esbuild-plugin-eslint)](license)
 
 > Lint your [`esbuild`](https://github.com/evanw/esbuild) bundles with [`eslint`](https://github.com/eslint/eslint). 🧐
@@ -40,12 +40,12 @@ Default: `false`<br>
 
 Controls whether to enable or disable the autofix feature of ESLint.
 
-### `extensions`
+### `useEslintrc`
 
-Type: `string[]`<br>
-Default: `null`<br>
+Type: `boolean`<br>
+Default: `true`<br>
 
-Controls what type of files ESLint should look at. The default of `null` is equal to `[ '.js' ]`.
+If set to `false`, ESLint will not respect any configuration files it finds.
 
 ## License
 
