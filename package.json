@@ -1,0 +1,38 @@
+{
+  "name": "esbuild-plugin-eslint",
+  "version": "0.0.1",
+  "description": "Lint your esbuild bundles with ESLint. 🧐",
+  "main": "source/index.js",
+  "types": "types/index.d.ts",
+  "repository": "https://github.com/robinloeffel/esbuild-plugin-eslint.git",
+  "homepage": "https://github.com/robinloeffel/esbuild-plugin-eslint",
+  "bugs": "https://github.com/robinloeffel/esbuild-plugin-eslint/issues",
+  "author": "Robin Löffel (https://robinloeffel.ch) <hi@robinloeffel.ch>",
+  "license": "MIT",
+  "keywords": [
+    "esbuild",
+    "plugin",
+    "esbuild-plugin",
+    "eslint",
+    "lint"
+  ],
+  "engines": {
+    "node": ">=12.22"
+  },
+  "files": [
+    "source",
+    "types"
+  ],
+  "devDependencies": {
+    "esbuild": "^0.14.16",
+    "eslint": "^8.8.0",
+    "eslint-config-sweet": "^8.0.1"
+  },
+  "peerDependencies": {
+    "esbuild": "^0.14.16",
+    "eslint": "^8.8.0"
+  },
+  "scripts": {
+    "start": "node test/esbuild --dev"
+  }
+}
