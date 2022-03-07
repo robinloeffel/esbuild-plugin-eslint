@@ -1,6 +1,7 @@
+const minimatch = require("minimatch");
 const { ESLint } = require('eslint');
 
-module.exports = (options = {}) => ({
+module.exports = ({ patterns, ...options } = {}) => ({
   name: 'eslint',
   setup(build) {
     const eslint = new ESLint(options);
@@ -8,6 +9,7 @@ module.exports = (options = {}) => ({
     build.onLoad({
       filter: /\.(jsx?|tsx?)$/
     }, async ({ path }) => {
+      if (patterns && !minimatch(patterns, path)) return;
       const result = await eslint.lintFiles(path);
 
       if (options.fix) {

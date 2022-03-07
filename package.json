@@ -34,5 +34,8 @@
   },
   "scripts": {
     "start": "node test/esbuild --dev"
+  },
+  "dependencies": {
+    "minimatch": "^5.0.1"
   }
 }
