@@ -31,7 +31,15 @@ build({
 
 ## Config
 
-This plugin respects your [ESLint configuration](https://eslint.org/docs/user-guide/configuring) as per default. It also takes a configuration object intended for the [ESLint constructor](https://eslint.org/docs/developer-guide/nodejs-api#-new-eslintoptions). The most important are:
+This plugin respects your [ESLint configuration](https://eslint.org/docs/user-guide/configuring) as per default. It also takes a configuration object intended for the [ESLint constructor](https://eslint.org/docs/developer-guide/nodejs-api#-new-eslintoptions). It has an additionnal setting patterns to filter in respect of lintFile function. The most important are:
+
+### `patterns`
+
+Type: `string`<br>
+Default: ``<br>
+
+Control by glob pattern which file get linted.
+See [ESlint.lintFiles](https://eslint.org/docs/developer-guide/nodejs-api#-eslintlintfilespatterns)
 
 ### `fix`
 
