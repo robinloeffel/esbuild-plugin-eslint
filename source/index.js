@@ -6,13 +6,13 @@ module.exports = ({ patterns, ...options } = {}) => ({
   name: 'eslint',
   setup(build) {
     const eslint = new ESLint(options);
-    const cwd = process.cwd()
-    let _patterns = Array.isArray(patterns) ? patterns : [ patterns ];
+    const cwd = process.cwd();
+    const _patterns = (Array.isArray(patterns) ? patterns : [ patterns ]).filter(pattern => !!pattern);
     build.onLoad({
       filter: /\.(jsx?|tsx?)$/
     }, async ({ path }) => {
-      const relative = Path.relative(cwd,path)
-      if (_patterns.length > 0 && !_patterns.some(p => minimatch(relative, p, {matchBase:true}))) {
+      const relative = Path.relative(cwd, path);
+      if (_patterns.length > 0 && !_patterns.some(p => minimatch(relative, p, { matchBase: true }))) {
         return;
       }
       const result = await eslint.lintFiles(path);
