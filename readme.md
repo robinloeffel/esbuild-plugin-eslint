@@ -35,7 +35,7 @@ This plugin respects your [ESLint configuration](https://eslint.org/docs/user-gu
 
 ### `patterns`
 
-Type: `string`<br>
+Type: `string|string[]`<br>
 Default: ``<br>
 
 Control by glob pattern which file get linted.
