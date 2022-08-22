@@ -31,7 +31,15 @@ build({
 
 ## Config
 
-This plugin respects your [ESLint configuration](https://eslint.org/docs/user-guide/configuring) as per default. It also takes a configuration object intended for the [ESLint constructor](https://eslint.org/docs/developer-guide/nodejs-api#-new-eslintoptions). The most important are:
+This plugin respects your [ESLint configuration](https://eslint.org/docs/user-guide/configuring) as per default. It also takes a configuration object intended for the [ESLint constructor](https://eslint.org/docs/developer-guide/nodejs-api#-new-eslintoptions) with the addition of a `filter` property. The most important options are:
+
+### `filter`
+
+Type: `[RegExp]`<br>
+Default: `/\.(jsx?|tsx?|vue|svelte)$/`<br>
+Reference: [esbuild.github.io](https://esbuild.github.io/plugins/#on-load-options)
+
+Instructs `esbuild` what files to look at. Files _not_ matching this pattern will be ignored.
 
 ### `fix`
 

@@ -1,16 +1,24 @@
 const { ESLint } = require('eslint');
 
-module.exports = (options = {}) => ({
+module.exports = ({
+  filter = /\.(jsx?|tsx?|vue|svelte)$/,
+  ...eslintOptions
+} = {}) => ({
   name: 'eslint',
   setup(build) {
-    const eslint = new ESLint(options);
+    const eslint = new ESLint(eslintOptions);
+    const filesToLint = [];
 
-    build.onLoad({
-      filter: /\.(jsx?|tsx?)$/
-    }, async ({ path }) => {
-      const result = await eslint.lintFiles(path);
+    build.onLoad({ filter }, ({ path }) => {
+      if (!path.includes('node_modules')) {
+        filesToLint.push(path);
+      }
+    });
 
-      if (options.fix) {
+    build.onEnd(async () => {
+      const result = await eslint.lintFiles(filesToLint);
+
+      if (eslintOptions.fix) {
         ESLint.outputFixes(result);
       }
 
