@@ -1,6 +1,6 @@
 {
   "name": "esbuild-plugin-eslint",
-  "version": "0.0.1",
+  "version": "0.1.0",
   "description": "Lint your esbuild bundles with ESLint. 🧐",
   "main": "source/index.js",
   "types": "types/index.d.ts",
@@ -24,13 +24,13 @@
     "types"
   ],
   "devDependencies": {
-    "esbuild": "^0.14.16",
-    "eslint": "^8.8.0",
+    "esbuild": "^0.15.5",
+    "eslint": "^8.22.0",
     "eslint-config-sweet": "^8.0.1"
   },
   "peerDependencies": {
-    "esbuild": "^0.14.16",
-    "eslint": "^8.8.0"
+    "esbuild": "^0.15.5",
+    "eslint": "^8.22.0"
   },
   "scripts": {
     "start": "node test/esbuild --dev"
