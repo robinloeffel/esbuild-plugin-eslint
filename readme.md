@@ -35,7 +35,7 @@ This plugin respects your [ESLint configuration](https://eslint.org/docs/user-gu
 
 ### `filter`
 
-Type: `[RegExp]`<br>
+Type: `RegExp`<br>
 Default: `/\.(jsx?|tsx?|vue|svelte)$/`<br>
 Reference: [esbuild.github.io](https://esbuild.github.io/plugins/#on-load-options)
 
