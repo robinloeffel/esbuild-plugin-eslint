@@ -1,5 +1,10 @@
 # changelog
 
+## v0.3.1
+_2023-03-10_
+
+* fix typo in `throwOnWarning` message
+
 ## v0.3.0
 _2023-03-10_
 

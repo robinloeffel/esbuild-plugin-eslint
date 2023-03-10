@@ -21,13 +21,12 @@ module.exports = ({
 
     build.onEnd(async () => {
       const [ result ] = await eslint.lintFiles(filesToLint);
+      const formatter = await eslint.loadFormatter('stylish');
+      const output = formatter.format([ result ]);
 
       if (eslintOptions.fix) {
         ESLint.outputFixes([ result ]);
       }
-
-      const formatter = await eslint.loadFormatter('stylish');
-      const output = formatter.format([ result ]);
 
       if (output.length > 0) {
         console.log(output);
@@ -46,7 +45,7 @@ module.exports = ({
         return {
           warnings: [{
             pluginName,
-            text: `ESLint encountered ${result.warnings} errors.`
+            text: `ESLint encountered ${result.warnings} warnings.`
           }]
         };
       }

@@ -1,6 +1,6 @@
 {
   "name": "esbuild-plugin-eslint",
-  "version": "0.3.0",
+  "version": "0.3.1",
   "description": "Lint your esbuild bundles with ESLint. 🧐",
   "main": "source/index.js",
   "types": "types/index.d.ts",
