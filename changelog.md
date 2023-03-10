@@ -1,5 +1,10 @@
 # changelog
 
+## v0.3.0
+_2023-03-10_
+
+* add `throwOnError` and `throwOnWarning` options
+
 ## v0.2.0
 _2023-03-10_
 

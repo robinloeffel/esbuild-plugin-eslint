@@ -16,6 +16,7 @@ const run = watch => {
   if (watch) {
     chokidar.watch([
       absolute('../source/index.js'),
+      absolute('setup.js'),
       absolute('cases/to-lint.js')
     ]).on('change', callback);
   } else {
