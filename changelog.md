@@ -1,5 +1,11 @@
 # changelog
 
+## v0.2.0
+_2023-03-10_
+
+* fix tests
+* update dependencies
+
 ## v0.1.1
 _2022-08-30_
 
