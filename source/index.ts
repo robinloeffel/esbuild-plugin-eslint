@@ -1,29 +1,32 @@
-const { ESLint } = require('eslint');
-const getMessages = require('./util/get-messages');
+import type { PluginOptions } from "./types/plugin-options.js";
+import type { Plugin, OnLoadArgs } from "esbuild";
 
-const pluginName = 'eslint';
+import formatMessages from "./util/format-messages.js";
+import { ESLint } from "eslint";
 
-module.exports = ({
-  filter = /\.(jsx?|tsx?|vue|svelte)$/,
+export default ({
+  filter = /\.(?:jsx?|tsx?|vue|svelte)$/,
   throwOnError = false,
   throwOnWarning = false,
   ...eslintOptions
-} = {}) => ({
-  name: pluginName,
+}: PluginOptions = {}): Plugin => ({
+  name: "eslint",
   setup(build) {
     const eslint = new ESLint(eslintOptions);
-    const filesToLint = [];
+    const filesToLint: OnLoadArgs["path"][] = [];
 
     build.onLoad({ filter }, ({ path }) => {
-      if (!path.includes('node_modules')) {
+      if (!path.includes("node_modules")) {
         filesToLint.push(path);
       }
+
+      return null;
     });
 
     build.onEnd(async () => {
       const results = await eslint.lintFiles(filesToLint);
-      const formatter = await eslint.loadFormatter('stylish');
-      const output = formatter.format(results);
+      const formatter = await eslint.loadFormatter("stylish");
+      const output = await formatter.format(results);
 
       if (eslintOptions.fix) {
         ESLint.outputFixes(results);
@@ -34,14 +37,14 @@ module.exports = ({
       }
 
       if (throwOnError) {
-        const errors = getMessages(results, 2);
+        const errors = formatMessages(results, 2);
         if (errors.length > 0) {
           return { errors };
         }
       }
 
       if (throwOnWarning) {
-        const warnings = getMessages(results, 1);
+        const warnings = formatMessages(results, 1);
         if (warnings.length > 0) {
           return { warnings };
         }

@@ -1,5 +1,10 @@
 # changelog
 
+## v0.3.4
+_2023-03-18_
+
+* re-write in typescript
+
 ## v0.3.3
 _2023-03-18_
 
