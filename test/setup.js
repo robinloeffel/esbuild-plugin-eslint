@@ -7,17 +7,17 @@ const absolute = relative => join(__dirname, relative);
 
 const callback = async () => {
   await esbuild.build({
-    entryPoints: [ absolute('cases/to-lint.js') ],
-    plugins: [ plugin() ]
+    entryPoints: [ absolute('cases') ],
+    plugins: [ plugin({ throwOnError: true }) ],
+    bundle: true
   });
 };
 
 const run = watch => {
   if (watch) {
     chokidar.watch([
-      absolute('../source/index.js'),
-      absolute('setup.js'),
-      absolute('cases/to-lint.js')
+      absolute('../source/**/*.js'),
+      absolute('../test/**/*.js')
     ]).on('change', callback);
   } else {
     callback();

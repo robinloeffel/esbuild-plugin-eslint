@@ -1,4 +1,5 @@
 const { ESLint } = require('eslint');
+const getMessages = require('./util/get-messages');
 
 const pluginName = 'eslint';
 
@@ -20,34 +21,30 @@ module.exports = ({
     });
 
     build.onEnd(async () => {
-      const [ result ] = await eslint.lintFiles(filesToLint);
+      const results = await eslint.lintFiles(filesToLint);
       const formatter = await eslint.loadFormatter('stylish');
-      const output = formatter.format([ result ]);
+      const output = formatter.format(results);
 
       if (eslintOptions.fix) {
-        ESLint.outputFixes([ result ]);
+        ESLint.outputFixes(results);
       }
 
       if (output.length > 0) {
         console.log(output);
       }
 
-      if (throwOnError && result.errorCount > 0) {
-        return {
-          errors: [{
-            pluginName,
-            text: `ESLint encountered ${result.errorCount} errors.`
-          }]
-        };
+      if (throwOnError) {
+        const errors = getMessages(results, 2);
+        if (errors.length > 0) {
+          return { errors };
+        }
       }
 
-      if (throwOnWarning && result.warningCount > 0) {
-        return {
-          warnings: [{
-            pluginName,
-            text: `ESLint encountered ${result.warnings} warnings.`
-          }]
-        };
+      if (throwOnWarning) {
+        const warnings = getMessages(results, 1);
+        if (warnings.length > 0) {
+          return { warnings };
+        }
       }
 
       return null;
