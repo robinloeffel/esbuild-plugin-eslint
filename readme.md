@@ -46,8 +46,7 @@ Tells esbuild what files to look at. Only files matching this pattern will be ha
 
 Type: `boolean`<br>
 Default: `false`<br>
-Used by: [`esbuild`](https://github.com/evanw/esbuild)<br>
-Reference: [esbuild.github.io](https://esbuild.github.io/plugins/#on-load-results)
+Used by: [The plugin itself](https://github.com/robinloeffel/esbuild-plugin-eslint)<br>
 
 Instructs the plugin to forward errors found by ESLint to esbuild and throw an error.
 
@@ -55,8 +54,7 @@ Instructs the plugin to forward errors found by ESLint to esbuild and throw an e
 
 Type: `boolean`<br>
 Default: `false`<br>
-Used by: [`esbuild`](https://github.com/evanw/esbuild)<br>
-Reference: [esbuild.github.io](https://esbuild.github.io/plugins/#on-load-results)
+Used by: [The plugin itself](https://github.com/robinloeffel/esbuild-plugin-eslint)<br>
 
 Instructs the plugin to forward warnings found by ESLint to esbuild and throw an error.
 
