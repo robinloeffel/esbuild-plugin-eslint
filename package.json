@@ -24,10 +24,13 @@
     "types"
   ],
   "devDependencies": {
+    "@commitlint/cli": "^17.4.4",
+    "@commitlint/config-conventional": "^17.4.4",
     "chokidar": "^3.5.3",
     "esbuild": "^0.17.11",
     "eslint": "^8.35.0",
-    "eslint-config-sweet": "^9.0.1"
+    "eslint-config-sweet": "^9.0.1",
+    "husky": "^8.0.3"
   },
   "peerDependencies": {
     "esbuild": "^0.17.11",
