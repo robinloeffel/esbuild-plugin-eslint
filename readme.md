@@ -14,19 +14,33 @@ Nicely integrates the most recent version of [`eslint`](https://github.com/eslin
 ## How
 
 ```bash
-yarn add esbuild-plugin-eslint --dev
+yarn add esbuild-plugin-eslint eslint --dev
 ```
 
+### [ES Modules](https://nodejs.org/docs/latest-v16.x/api/esm.html)
 ```js
-const { build } = require('esbuild');
-const eslint = require('esbuild-plugin-eslint');
+import { build } from 'esbuild';
+import eslint from 'esbuild-plugin-eslint';
 
-build({
+await build({
   // ...
   plugins: [
     eslint({ /* config */ })
   ]
-})
+});
+```
+
+### [CommonJS](https://nodejs.org/docs/latest-v16.x/api/modules.html)
+```js
+const { build } = require('esbuild');
+const eslint = require('esbuild-plugin-eslint').default;
+
+await build({
+  // ...
+  plugins: [
+    eslint({ /* config */ })
+  ]
+});
 ```
 
 ## Config
@@ -36,7 +50,7 @@ This plugin respects your [ESLint configuration](https://eslint.org/docs/user-gu
 ### `filter`
 
 Type: `RegExp`<br>
-Default: `/\.(jsx?|tsx?|vue|svelte)$/`<br>
+Default: `/\.(?:jsx?|tsx?|vue|svelte)$/`<br>
 Used by: [`esbuild`](https://github.com/evanw/esbuild)<br>
 Reference: [esbuild.github.io](https://esbuild.github.io/plugins/#on-load-options)
 
