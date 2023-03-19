@@ -32,12 +32,12 @@
     "concurrently": "^7.6.0",
     "esbuild": "^0.17.12",
     "eslint": "^8.36.0",
-    "eslint-config-sweet": "^11.0.0",
+    "eslint-config-sweet": "^11.0.2",
     "husky": "^8.0.3"
   },
   "peerDependencies": {
-    "esbuild": "^0.17.11",
-    "eslint": "^8.35.0"
+    "esbuild": "^0.17.12",
+    "eslint": "^8.36.0"
   },
   "scripts": {
     "start": "yarn build && yarn watch",
