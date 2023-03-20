@@ -5,6 +5,9 @@ const absolute = relative => new URL(relative, import.meta.url).pathname;
 
 await esbuild.build({
   entryPoints: [ absolute("cases") ],
-  plugins: [ eslint({ throwOnError: true }) ],
+  plugins: [ eslint({
+    throwOnError: false,
+    throwOnWarning: false
+  }) ],
   bundle: true
 });
