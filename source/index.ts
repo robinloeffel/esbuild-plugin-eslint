@@ -27,6 +27,7 @@ export default ({
       const results = await eslint.lintFiles(filesToLint);
       const formatter = await eslint.loadFormatter("stylish");
       const output = await formatter.format(results);
+      const { warnings, errors } = formatMessages(results);
 
       if (eslintOptions.fix) {
         ESLint.outputFixes(results);
@@ -36,21 +37,17 @@ export default ({
         console.log(output);
       }
 
-      if (throwOnError) {
-        const errors = formatMessages(results, 2);
-        if (errors.length > 0) {
-          return { errors };
-        }
-      }
+      return {
+        ...throwOnWarning && warnings.length > 0 && { warnings },
+        ...throwOnError && errors.length > 0 && { errors },
 
-      if (throwOnWarning) {
-        const warnings = formatMessages(results, 1);
-        if (warnings.length > 0) {
-          return { warnings };
+        // in case throwOnWarning is true, and there are warnings to
+        // report, but throwOnError is false, we need to return a dummy
+        // error to make esbuild throw
+        ...throwOnWarning && warnings.length > 0 && !throwOnError && {
+          errors: [{ text: `${warnings.length} warning(s) were found!` }]
         }
-      }
-
-      return null;
+      };
     });
   }
 });

@@ -1,16 +1,27 @@
-import type { ESLint, Linter } from "eslint";
+import type { ESLint } from "eslint";
 import type { PartialMessage } from "esbuild";
 
 export default (
-  lintResults: ESLint.LintResult[],
-  messageSeverity: Linter.LintMessage["severity"]
+  lintResults: ESLint.LintResult[]
 ) => {
-  const messages: PartialMessage[] = [];
+  const warnings: PartialMessage[] = [];
+  const errors: PartialMessage[] = [];
 
   for (const lintResult of lintResults) {
     for (const message of lintResult.messages) {
-      if (message.severity === messageSeverity) {
-        messages.push({
+      if (message.severity === 1) {
+        warnings.push({
+          pluginName: "eslint",
+          text: message.message,
+          location: {
+            file: lintResult.filePath,
+            line: message.line
+          }
+        });
+      }
+
+      if (message.severity === 2) {
+        errors.push({
           pluginName: "eslint",
           text: message.message,
           location: {
@@ -22,5 +33,5 @@ export default (
     }
   }
 
-  return messages;
+  return { warnings, errors };
 };

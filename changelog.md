@@ -1,5 +1,10 @@
 # changelog
 
+## v0.3.5
+_2023-03-20_
+
+* actually make esbuild throw, when `throwOnWarning && !throwOnError`
+
 ## v0.3.4
 _2023-03-18_
 
