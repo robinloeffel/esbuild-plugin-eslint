@@ -9,5 +9,6 @@ await esbuild.build({
     throwOnError: false,
     throwOnWarning: false
   }) ],
-  bundle: true
+  bundle: true,
+  write: false
 });
