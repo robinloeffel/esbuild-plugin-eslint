@@ -25,19 +25,19 @@
     "node": ">=16"
   },
   "devDependencies": {
-    "@commitlint/cli": "^17.4.4",
+    "@commitlint/cli": "^17.5.1",
     "@commitlint/config-conventional": "^17.4.4",
-    "@types/eslint": "^8.21.3",
+    "@types/eslint": "^8.37.0",
     "chokidar-cli": "^3.0.0",
-    "concurrently": "^7.6.0",
-    "esbuild": "^0.17.12",
-    "eslint": "^8.36.0",
+    "concurrently": "^8.0.1",
+    "esbuild": "^0.17.14",
+    "eslint": "^8.37.0",
     "eslint-config-sweet": "^11.0.2",
     "husky": "^8.0.3"
   },
   "peerDependencies": {
-    "esbuild": "^0.17.12",
-    "eslint": "^8.36.0"
+    "esbuild": "^0.17.14",
+    "eslint": "^8.37.0"
   },
   "scripts": {
     "start": "yarn build && yarn watch",
