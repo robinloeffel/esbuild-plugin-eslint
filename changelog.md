@@ -1,5 +1,10 @@
 # changelog
 
+## v0.3.6
+_2023-04-02_
+
+* report single messages for `throwOnWarning` and `throwOnError`
+
 ## v0.3.5
 _2023-03-20_
 

@@ -1,6 +1,6 @@
 {
   "name": "esbuild-plugin-eslint",
-  "version": "0.3.5",
+  "version": "0.3.6",
   "description": "Lint your esbuild bundles with ESLint. 🧐",
   "type": "module",
   "main": "dist/index.js",
@@ -45,6 +45,6 @@
     "watch": "concurrently 'yarn watch:source' 'yarn watch:test'",
     "watch:source": "chokidar 'source/**/*' -c 'yarn build'",
     "watch:test": "chokidar 'test/**/*' -c 'node test/esbuild'",
-    "prepublish": "yarn build"
+    "prepublishOnly": "yarn build"
   }
 }

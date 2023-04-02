@@ -1,21 +1,19 @@
 import type { PluginOptions } from "./types/plugin-options.js";
 import type { Plugin, OnLoadArgs } from "esbuild";
-
-import formatMessages from "./util/format-messages.js";
 import { ESLint } from "eslint";
 
 export default ({
   filter = /\.(?:jsx?|tsx?|vue|svelte)$/,
-  throwOnError = false,
   throwOnWarning = false,
+  throwOnError = false,
   ...eslintOptions
 }: PluginOptions = {}): Plugin => ({
   name: "eslint",
-  setup(build) {
+  setup: ({ onLoad, onEnd }) => {
     const eslint = new ESLint(eslintOptions);
     const filesToLint: OnLoadArgs["path"][] = [];
 
-    build.onLoad({ filter }, ({ path }) => {
+    onLoad({ filter }, ({ path }) => {
       if (!path.includes("node_modules")) {
         filesToLint.push(path);
       }
@@ -23,14 +21,16 @@ export default ({
       return null;
     });
 
-    build.onEnd(async () => {
+    onEnd(async () => {
       const results = await eslint.lintFiles(filesToLint);
       const formatter = await eslint.loadFormatter("stylish");
       const output = await formatter.format(results);
-      const { warnings, errors } = formatMessages(results);
+
+      const warnings = results.reduce((count, result) => count + result.warningCount, 0);
+      const errors = results.reduce((count, result) => count + result.errorCount, 0);
 
       if (eslintOptions.fix) {
-        ESLint.outputFixes(results);
+        await ESLint.outputFixes(results);
       }
 
       if (output.length > 0) {
@@ -38,14 +38,11 @@ export default ({
       }
 
       return {
-        ...throwOnWarning && warnings.length > 0 && { warnings },
-        ...throwOnError && errors.length > 0 && { errors },
-
-        // in case throwOnWarning is true, and there are warnings to
-        // report, but throwOnError is false, we need to return a dummy
-        // error to make esbuild throw
-        ...throwOnWarning && warnings.length > 0 && !throwOnError && {
-          errors: [{ text: `${warnings.length} warning(s) were found!` }]
+        ...throwOnWarning && warnings > 0 && {
+          errors: [{ text: `${warnings} warnings were found by eslint!` }]
+        },
+        ...throwOnError && errors > 0 && {
+          errors: [{ text: `${errors} errors were found by eslint!` }]
         }
       };
     });
