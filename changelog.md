@@ -1,5 +1,10 @@
 # changelog
 
+## v0.3.7
+_2023-11-03_
+
+* allow newer versions of `esbuild`
+
 ## v0.3.6
 _2023-04-02_
 
