@@ -40,11 +40,12 @@
     "eslint": "^8.37.0"
   },
   "scripts": {
-    "start": "yarn build && yarn watch",
+    "start": "bun run build && bun run watch",
     "build": "rm -rf dist && tsc",
-    "watch": "concurrently 'yarn watch:source' 'yarn watch:test'",
-    "watch:source": "chokidar 'source/**/*' -c 'yarn build'",
-    "watch:test": "chokidar 'test/**/*' -c 'node test/esbuild'",
-    "prepublishOnly": "yarn build"
+    "watch": "concurrently 'bun run watch:source' 'bun run watch:test'",
+    "watch:source": "chokidar 'source/**/*' -c 'bun run build'",
+    "watch:test": "chokidar 'test/**/*' -c 'bun test/esbuild.js'",
+    "prepublishOnly": "bun run build",
+    "prepare": "husky install"
   }
 }

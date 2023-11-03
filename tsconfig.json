@@ -1,13 +1,17 @@
 {
   "compilerOptions": {
-    "declaration": true,
-    "lib": [ "es2020", "dom" ],
-    "module": "es2020",
-    "moduleResolution": "node16",
-    "outDir": "dist",
+    "target": "es2022",
+    "module": "nodenext",
+    "moduleResolution": "nodenext",
+    "lib": [ "es2022" ],
     "strict": true,
-    "target": "es2020"
+    "noUncheckedIndexedAccess": true,
+    "skipLibCheck": true,
+    "verbatimModuleSyntax": true,
+    "moduleDetection": "force",
+    "declaration": true,
+    "outDir": "dist",
   },
-  "exclude": [ "node_modules" ],
-  "include": [ "source" ]
+  "include": [ "source" ],
+  "exclude": [ "node_modules" ]
 }
