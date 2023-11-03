@@ -1,5 +1,5 @@
-import type { PluginOptions } from "./types/plugin-options.js";
-import type { Plugin, OnLoadArgs } from "esbuild";
+import { type PluginOptions } from "./types/plugin-options.js";
+import { type Plugin, type OnLoadArgs } from "esbuild";
 import { ESLint } from "eslint";
 
 export default ({
