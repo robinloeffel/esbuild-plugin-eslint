@@ -1,15 +1,7 @@
 {
   "name": "esbuild-plugin-eslint",
-  "version": "0.3.7",
+  "version": "0.3.8",
   "description": "Lint your esbuild bundles with ESLint. 🧐",
-  "type": "module",
-  "main": "dist/index.js",
-  "types": "dist/index.d.ts",
-  "repository": "https://github.com/robinloeffel/esbuild-plugin-eslint.git",
-  "homepage": "https://github.com/robinloeffel/esbuild-plugin-eslint",
-  "bugs": "https://github.com/robinloeffel/esbuild-plugin-eslint/issues",
-  "author": "Robin Löffel (https://robinloeffel.ch) <hi@robinloeffel.ch>",
-  "license": "MIT",
   "keywords": [
     "esbuild",
     "plugin",
@@ -17,35 +9,45 @@
     "eslint",
     "lint"
   ],
+  "homepage": "https://github.com/robinloeffel/esbuild-plugin-eslint",
+  "bugs": "https://github.com/robinloeffel/esbuild-plugin-eslint/issues",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/robinloeffel/esbuild-plugin-eslint.git"
+  },
+  "license": "MIT",
+  "author": "Robin Löffel (https://robinloeffel.ch) <hi@robinloeffel.ch>",
+  "type": "module",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
   "files": [
     "source",
     "dist"
   ],
-  "engines": {
-    "node": ">=16"
+  "scripts": {
+    "build": "rm -rf dist && tsc --project tsconfig.build.json",
+    "prepack": "npm run build",
+    "start": "npm run watch",
+    "watch": "concurrently npm:watch:*",
+    "watch:build": "chokidar 'source/**/*' -c 'npm run build' --initial",
+    "watch:test": "chokidar 'test/**/*' -c 'node test/esbuild.js' --initial"
   },
   "devDependencies": {
-    "@commitlint/cli": "^18.2.0",
-    "@commitlint/config-conventional": "^18.1.0",
-    "@types/eslint": "^8.44.6",
+    "@tsconfig/strictest": "^2.0.3",
+    "@types/eslint": "^8.56.5",
     "chokidar-cli": "^3.0.0",
     "concurrently": "^8.2.2",
-    "esbuild": ">=0.17.19",
-    "eslint": "^8.52.0",
-    "eslint-config-sweet": "^12.0.0",
-    "husky": "^8.0.3"
+    "esbuild": ">=0.20",
+    "eslint": "^8 || ^9",
+    "eslint-config-sweet": "^18.0.0",
+    "eslint-define-config": "^2.1.0",
+    "typescript": "^5.3.3"
   },
   "peerDependencies": {
-    "esbuild": ">=0.17.19",
-    "eslint": "^8.37.0"
+    "esbuild": ">=0.20",
+    "eslint": "^8 || ^9"
   },
-  "scripts": {
-    "start": "bun run build && bun run watch",
-    "build": "rm -rf dist && tsc",
-    "watch": "concurrently 'bun run watch:source' 'bun run watch:test'",
-    "watch:source": "chokidar 'source/**/*' -c 'bun run build'",
-    "watch:test": "chokidar 'test/**/*' -c 'bun test/esbuild.js'",
-    "prepublishOnly": "bun run build",
-    "prepare": "husky install"
+  "engines": {
+    "node": ">=18"
   }
 }

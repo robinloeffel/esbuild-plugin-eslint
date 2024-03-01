@@ -1,13 +1,29 @@
-import { type PluginOptions } from "./types/plugin-options.js";
 import { type Plugin, type OnLoadArgs } from "esbuild";
 import { ESLint } from "eslint";
 
+interface Options extends ESLint.Options {
+  /**
+   * tells esbuild what files to look at; only matches will be processed
+   */
+  filter?: RegExp;
+
+  /**
+   * controls whether or not to forward an error to esbuild when eslint reports any warnings
+   */
+  throwOnWarning?: boolean;
+
+  /**
+   * controls whether or not to forward an error to esbuild when eslint reports any errors
+   */
+  throwOnError?: boolean;
+}
+
 export default ({
-  filter = /\.(?:jsx?|tsx?|vue|svelte)$/,
+  filter = /\.(?:jsx?|tsx?|mts|cts|mjs|cjs|vue|svelte)$/,
   throwOnWarning = false,
   throwOnError = false,
   ...eslintOptions
-}: PluginOptions = {}): Plugin => ({
+}: Options = {}): Plugin => ({
   name: "eslint",
   setup: ({ onLoad, onEnd }) => {
     const eslint = new ESLint(eslintOptions);
@@ -21,9 +37,9 @@ export default ({
       return null;
     });
 
-    onEnd(async () => {
+    onEnd(async() => {
       const results = await eslint.lintFiles(filesToLint);
-      const formatter = await eslint.loadFormatter("stylish");
+      const formatter = await eslint.loadFormatter();
       const output = await formatter.format(results);
 
       const warnings = results.reduce((count, result) => count + result.warningCount, 0);

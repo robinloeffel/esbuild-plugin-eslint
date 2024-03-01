@@ -1,5 +1,12 @@
 # changelog
 
+## v0.3.8
+_2024-03-01_
+
+* require at least `node@18`
+* update `esbuild` peer dependency to `>=0.20`
+* update `eslint` peer dependency to `^8 || ^9`
+
 ## v0.3.7
 _2023-11-03_
 

@@ -1,7 +1,7 @@
 # `esbuild-plugin-eslint`
 
 [![latest version on npm](https://img.shields.io/npm/v/esbuild-plugin-eslint)](https://www.npmjs.com/package/esbuild-plugin-eslint)
-[![npm downloads a month](https://img.shields.io/npm/dm/esbuild-plugin-eslint)](https://www.npmjs.com/package/esbuild-plugin-eslint)
+[![npm downloads a week](https://img.shields.io/npm/dw/esbuild-plugin-eslint)](https://www.npmjs.com/package/esbuild-plugin-eslint)
 [![required node version](https://img.shields.io/node/v/esbuild-plugin-eslint)](https://github.com/nodejs/Release)
 [![esbuild peer dep](https://img.shields.io/npm/dependency-version/esbuild-plugin-eslint/peer/esbuild?label=esbuild%20peer%20dep)](https://github.com/evanw/esbuild)
 [![eslint peer dep](https://img.shields.io/npm/dependency-version/esbuild-plugin-eslint/peer/eslint?label=eslint%20peer%20dep)](https://github.com/eslint/eslint)
@@ -14,10 +14,9 @@ Nicely integrates the most recent version of [`eslint`](https://github.com/eslin
 ## How
 
 ```bash
-yarn add esbuild-plugin-eslint eslint --dev
+npm i esbuild-plugin-eslint eslint --save-dev
 ```
 
-### [ES Modules](https://nodejs.org/docs/latest-v16.x/api/esm.html)
 ```js
 import { build } from 'esbuild';
 import eslint from 'esbuild-plugin-eslint';
@@ -30,17 +29,8 @@ await build({
 });
 ```
 
-### [CommonJS](https://nodejs.org/docs/latest-v16.x/api/modules.html)
-```js
-const { build } = require('esbuild');
-const eslint = require('esbuild-plugin-eslint').default;
-
-await build({
-  // ...
-  plugins: [
-    eslint({ /* config */ })
-  ]
-});
+```bash
+node esbuild.config.js
 ```
 
 ## Config
@@ -50,7 +40,7 @@ This plugin respects your [ESLint configuration](https://eslint.org/docs/user-gu
 ### `filter`
 
 Type: `RegExp`<br>
-Default: `/\.(?:jsx?|tsx?|vue|svelte)$/`<br>
+Default: `/\.(?:jsx?|tsx?|mts|cts|mjs|cjs|vue|svelte)$/`<br>
 Used by: [`esbuild`](https://github.com/evanw/esbuild)<br>
 Reference: [esbuild.github.io](https://esbuild.github.io/plugins/#on-load-options)
 
