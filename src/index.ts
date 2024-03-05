@@ -1,4 +1,4 @@
-import { type Plugin, type OnLoadArgs } from "esbuild";
+import type { OnLoadArgs, Plugin } from "esbuild";
 import { ESLint } from "eslint";
 
 interface Options extends ESLint.Options {

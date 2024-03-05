@@ -1,5 +1,10 @@
 # changelog
 
+## v0.3.9
+_2024-03-05_
+
+* remove leftover `import` statement after compilation
+
 ## v0.3.8
 _2024-03-01_
 

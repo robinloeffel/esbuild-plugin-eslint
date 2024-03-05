@@ -3,7 +3,7 @@ const { defineConfig } = require("eslint-define-config");
 module.exports = defineConfig({
   extends: "sweet",
   overrides: [{
-    files: "./source/index.ts",
+    files: "./src/index.ts",
     rules: {
       "no-console": "off",
       "unicorn/no-null": "off",
