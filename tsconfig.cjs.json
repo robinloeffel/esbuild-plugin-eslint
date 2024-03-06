@@ -1,0 +1,15 @@
+{
+  "extends": "./tsconfig.json",
+  "compilerOptions": {
+    "noEmit": false,
+    "outDir": "./dist/cjs",
+
+    // Enable CJS output
+    "module": "CommonJS",
+    "moduleResolution": "Node",
+
+    // verbatimModuleSyntax doesn't transform import to require
+    "verbatimModuleSyntax": false
+  },
+  "include": ["./src"]
+}

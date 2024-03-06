@@ -18,14 +18,22 @@
   "license": "MIT",
   "author": "Robin Löffel (https://robinloeffel.ch) <hi@robinloeffel.ch>",
   "type": "module",
-  "main": "dist/index.js",
-  "types": "dist/index.d.ts",
+  "main": "dist/esm/index.js",
+  "types": "dist/types/index.d.ts",
+  "exports": {
+    "types": "./dist/types/index.d.ts",
+    "require": "./dist/cjs/index.js",
+    "default": "./dist/esm/index.js"
+  },
   "files": [
     "src",
     "dist"
   ],
   "scripts": {
-    "build": "rm -rf dist && tsc --project tsconfig.build.json",
+    "build": "rm -rf dist && concurrently npm:build:*",
+    "build:cjs": "tsc --project tsconfig.cjs.json",
+    "build:esm": "tsc --project tsconfig.esm.json",
+    "build:types": "tsc --project tsconfig.types.json",
     "prepack": "npm run build",
     "start": "npm run watch",
     "watch": "concurrently npm:watch:*",
