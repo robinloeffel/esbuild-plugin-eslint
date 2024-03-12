@@ -1,5 +1,10 @@
 # changelog
 
+## v0.3.11
+_2024-03-12_
+
+* add `types`, `main`, and `module` fields to `package.json`
+
 ## v0.3.10
 _2024-03-12_
 

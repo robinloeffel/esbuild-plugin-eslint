@@ -1,6 +1,6 @@
 {
   "name": "esbuild-plugin-eslint",
-  "version": "0.3.10",
+  "version": "0.3.11",
   "description": "Lint your esbuild bundles with ESLint. 🧐",
   "keywords": [
     "esbuild",
@@ -23,6 +23,9 @@
     "import": "./dist/esm/index.js",
     "require": "./dist/cjs/index.js"
   },
+  "main": "./dist/cjs/index.js",
+  "module": "./dist/esm/index.js",
+  "types": "./dist/index.d.ts",
   "files": [
     "src",
     "dist"
