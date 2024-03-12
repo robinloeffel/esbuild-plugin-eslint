@@ -1,5 +1,10 @@
 # changelog
 
+## v0.3.10
+_2024-03-12_
+
+* emit `esm` and `cjs` bundles
+
 ## v0.3.9
 _2024-03-05_
 

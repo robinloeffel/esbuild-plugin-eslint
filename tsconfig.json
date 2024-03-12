@@ -2,10 +2,9 @@
   "extends": "@tsconfig/strictest/tsconfig.json",
   "compilerOptions": {
     "target": "esnext",
-    "module": "nodenext",
-    "moduleResolution": "nodenext",
+    "module": "esnext",
+    "moduleResolution": "bundler",
     "noPropertyAccessFromIndexSignature": false,
-    "verbatimModuleSyntax": true,
     "moduleDetection": "force",
     "noEmit": true
   }
