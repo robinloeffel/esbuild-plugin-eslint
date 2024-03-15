@@ -1,5 +1,19 @@
 import type { OnLoadArgs, Plugin } from "esbuild";
-import { ESLint } from "eslint";
+import eslintPkg, { type ESLint } from "eslint";
+
+type ESLintClass = typeof eslintPkg.ESLint;
+export const loadESLint = async(): Promise<ESLintClass> => {
+    if (!("loadESLint" in eslintPkg)) {
+        return eslintPkg.ESLint;
+    }
+
+    if (typeof eslintPkg.loadESLint !== "function") {
+        return eslintPkg.ESLint;
+    }
+
+    // only use loadESLint if it's available (i.e. eslint peer-dep is at least v8.57.0 )
+    return (await eslintPkg.loadESLint()) as ESLintClass;
+};
 
 interface Options extends ESLint.Options {
   /**
@@ -25,8 +39,9 @@ export default ({
   ...eslintOptions
 }: Options = {}): Plugin => ({
   name: "eslint",
-  setup: ({ onLoad, onEnd }) => {
-    const eslint = new ESLint(eslintOptions);
+  setup: async({ onLoad, onEnd }) => {
+    const EslintConstructor = await loadESLint();
+    const eslint = new EslintConstructor(eslintOptions);
     const filesToLint: OnLoadArgs["path"][] = [];
 
     onLoad({ filter }, ({ path }) => {
@@ -46,7 +61,7 @@ export default ({
       const errors = results.reduce((count, result) => count + result.errorCount, 0);
 
       if (eslintOptions.fix) {
-        await ESLint.outputFixes(results);
+        await EslintConstructor.outputFixes(results);
       }
 
       if (output.length > 0) {
