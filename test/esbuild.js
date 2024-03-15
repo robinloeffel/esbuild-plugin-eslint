@@ -1,5 +1,5 @@
 import { build } from "esbuild";
-import eslint from "../dist/esm/index.js";
+import eslint from "../dist/index.mjs";
 
 const absolute = relative => new URL(relative, import.meta.url).pathname;
 

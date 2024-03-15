@@ -1,5 +1,10 @@
 # changelog
 
+## v0.3.12
+_2024-03-15_
+
+* emit `index.cjs` and `index.mjs` chunks
+
 ## v0.3.11
 _2024-03-12_
 

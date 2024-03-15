@@ -1,6 +1,6 @@
 {
   "name": "esbuild-plugin-eslint",
-  "version": "0.3.11",
+  "version": "0.3.12",
   "description": "Lint your esbuild bundles with ESLint. 🧐",
   "keywords": [
     "esbuild",
@@ -20,20 +20,20 @@
   "type": "module",
   "exports": {
     "types": "./dist/index.d.ts",
-    "import": "./dist/esm/index.js",
-    "require": "./dist/cjs/index.js"
+    "import": "./dist/index.mjs",
+    "require": "./dist/index.cjs"
   },
-  "main": "./dist/cjs/index.js",
-  "module": "./dist/esm/index.js",
+  "main": "./dist/index.cjs",
+  "module": "./dist/index.mjs",
   "types": "./dist/index.d.ts",
   "files": [
     "src",
     "dist"
   ],
   "scripts": {
-    "build": "concurrently npm:build:*",
-    "build:cjs": "tsc --project tsconfig.cjs.json",
-    "build:esm": "tsc --project tsconfig.esm.json",
+    "build": "concurrently npm:build:* -m 1",
+    "build:cjs": "tsc --project tsconfig.cjs.json && mv dist/index.js dist/index.cjs",
+    "build:mjs": "tsc --project tsconfig.mjs.json && mv dist/index.js dist/index.mjs",
     "build:types": "tsc --project tsconfig.types.json",
     "clean": "rm -rf dist",
     "prepack": "npm run clean && npm run build",
